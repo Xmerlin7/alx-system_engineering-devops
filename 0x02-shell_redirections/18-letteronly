@@ -1,2 +1,2 @@
 #!/bin/bash
-grep '^[:upper:]\|^[:lower:]' /etic/ssh/sshd_config
+grep '^[[:upper:]]\|^[[:lower:]]' /etic/ssh/sshd_config
