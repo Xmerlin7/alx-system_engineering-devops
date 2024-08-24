@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 # A script that reloads Gunicorn in a graceful way
-
-# Send the HUP signal to all Gunicorn processes to trigger a graceful reload
 sudo pkill -HUP gunicorn
-
-# Optional: Restart related services if needed
-# sudo systemctl restart gunicorn.service
-# sudo systemctl restart gunicorn_api.service
+sudo systemctl restart gunicorn.service
+sudo systemctl restart gunicorn_api.service
