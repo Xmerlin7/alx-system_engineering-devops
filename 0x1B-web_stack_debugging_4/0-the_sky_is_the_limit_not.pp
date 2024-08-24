@@ -1,6 +1,14 @@
-# Manifest to fix Nginx open file limit configuration
-exec { 'nginx fix':
-  onlyif   => 'test -e /etc/default/nginx',
-  command  => "sed -i s/'-n 15'/'-n 4096'/g /etc/default/nginx;  service nginx restart",
-  provider => 'shell'
+# Increse the request's limit
+
+# Increse ulimit value
+exec { 'fix-config-nginx':
+  onlyif  => 'test -e /etc/default/nginx',
+  command => 'sed -i "5s/[0-9]\+/$( ulimit -n )/" /etc/default/nginx',
+  path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+}
+
+# Restart nginex service
+exec { 'nginx-restart':
+  command => 'nginx restart',
+  path    => '/etc/init.d/'
 }
