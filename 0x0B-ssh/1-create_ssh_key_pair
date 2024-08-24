@@ -1,17 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# Creates a new 4096-bit RSA key pair named school.
 
-# Define key file names and passphrase
-KEY_NAME="school"
-PASSPHRASE="betty"
-
-# Generate RSA key pair
-echo "Generating public/private rsa key pair."
-ssh-keygen -t rsa -b 4096 -f "$KEY_NAME" -N "$PASSPHRASE"
-
-# Output the results
-if [ $? -eq 0 ]; then
-    echo "Your identification has been saved in $KEY_NAME."
-    echo "Your public key has been saved in $KEY_NAME.pub."
-else
-    echo "Key generation failed."
-fi
+ssh-keygen -t rsa -b 4096 -N betty -f school
